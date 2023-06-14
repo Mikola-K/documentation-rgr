@@ -270,12 +270,6 @@ function AdminCreateElection() {
                     showShortcuts={true}
                   />
                 </div>
-                {/* <Datepicker
-                  primaryColor={"blue"}
-                  value={dateValue}
-                  onChange={handleDateValueChange}
-                  showShortcuts={true}
-                /> */}
               </label>
               <label className="flex flex-col mt-2">
                 Candidates name:

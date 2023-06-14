@@ -6,6 +6,8 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AdminCreateElection from "./components/AdminCreateElection";
 import AdminEditElection from "./components/AdminEditElection";
+import AdminEditElectionByIdWrapper from "./components/AdminEditElectionById";
+
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
@@ -14,6 +16,10 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         <Route path="/admin/main" element={<AdminMainPage />} />
         <Route path="/admin/create" element={<AdminCreateElection />} />
         <Route path="/admin/edit" element={<AdminEditElection />} />
+        <Route
+          path="/admin/edit/:id"
+          element={<AdminEditElectionByIdWrapper />}
+        />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

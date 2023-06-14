@@ -1,8 +1,19 @@
-import React from "react";
+import { ChangeEvent, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import axiosInstance from './api/axiosInstance'
+import IElection from './interfaces/electionDto'
 
 function AdminMainPage() {
+  const [electionList, setElectionList] = useState<IElection>();
+
+   useEffect(() => {
+    axiosInstance.get<IElection>(`/election/editable`).then((response) => {
+      setElectionList(response.data);
+      console.log(response.data, "list of election");
+    });
+    });
+
   return (
     <div className="">
       <Navbar indentity_code={31231} persone={"admin"} />
@@ -22,6 +33,7 @@ function AdminMainPage() {
           <div className="flex items-center flex-col p-2">
             <h1>Election One</h1>
             <h1>Election Two</h1>
+            {electionList?.name}
           </div>
         </div>
         <div className="flex">
