@@ -1,5 +1,6 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
 
 function AdminCreateElection() {
   const [createElection, setCreateElection] = useState({
@@ -27,16 +28,12 @@ function AdminCreateElection() {
   const CreateElectionButton = () => {};
   return (
     <div className="">
-      <nav className="flex justify-center my-4">
-        <h1 className="text-3xl font-bold underline text-red-600">
-          Navbar Create Election
-        </h1>
-      </nav>
+      <Navbar indentity_code={31231} persone={"admin"} />
       <div className=" h-full bg-[#F7F7F7]">
         <div className="flex items-center flex-col">
           <h1 className="py-2">Create Election</h1>
           <form>
-            <div className="flex flex-col justify-center py-2">
+            <div className="flex flex-col justify-center py-2 items-center">
               <label className="flex flex-col">
                 Name:
                 <input
@@ -67,23 +64,27 @@ function AdminCreateElection() {
                   className="w-64 my-0.5 bg-[#fffff] rounded-lg px-2 border border-slate-950 hover:border-purple-800"
                 />
               </label>
-              <div className="flex flex-col mt-2">
+              <label className="flex flex-col mt-2 items-start">
                 Choose locality:
-                <div className="">
-                  <button className="px-4 py-1 my-2 mx-2 text-sx text-[#fffff] font-semibold rounded-full border border-purple-200 hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">
-                    District
-                  </button>
-                  <button className="px-4 py-1 my-2 mx-2 text-sx text-[#fffff] font-semibold rounded-full border border-purple-200 hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">
-                    City
-                  </button>
-                  <button className="px-4 py-1 my-2 mx-2 text-sx text-[#fffff] font-semibold rounded-full border border-purple-200 hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">
-                    State
-                  </button>
-                  <button className="px-4 py-1 my-2 mx-2 text-sx text-[#fffff] font-semibold rounded-full border border-purple-200 hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">
-                    National
-                  </button>
+                <div className="flex justify-around flex-col">
+                  <div>
+                    <button className="px-4 py-1 my-2 text-sx text-[#fffff] font-semibold rounded-full border border-purple-200 hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">
+                      District
+                    </button>
+                    <button className="px-4 py-1 my-2 mx-2 text-sx text-[#fffff] font-semibold rounded-full border border-purple-200 hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">
+                      City
+                    </button>
+                  </div>
+                  <div>
+                    <button className="px-4 py-1 my-2 text-sx text-[#fffff] font-semibold rounded-full border border-purple-200 hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">
+                      State
+                    </button>
+                    <button className="px-4 py-1 my-2 mx-2 text-sx text-[#fffff] font-semibold rounded-full border border-purple-200 hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">
+                      National
+                    </button>
+                  </div>
                 </div>
-              </div>
+              </label>
               <label className="flex flex-col mt-2">
                 Vote retraction:
                 <div className="">

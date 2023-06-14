@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Navbar from "./components/Navbar";
 
 function AdminMainPage() {
   return (
     <div className="">
-      <nav className="flex justify-center my-4">
-        <h1 className="text-3xl font-bold underline text-red-600">Navbar</h1>
-      </nav>
+      <Navbar indentity_code={31231} persone={'admin'} />
       <div className="flex justify-evenly h-screen bg-[#F7F7F7] p-4 m-2">
         <div className="">
           <div>

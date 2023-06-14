@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
 
 function AdminEditElection() {
   return (
     <div className="">
-      <nav className="flex justify-center my-4">
-        <h1 className="text-3xl font-bold underline text-red-600">Navbar Edit Election $ElectioName</h1>
-      </nav>
+      <Navbar indentity_code={31231} persone={"admin"} />
       <div className="bg-[#F7F7F7]">
         <div>
           <h1>List of Election that you can change!</h1>
