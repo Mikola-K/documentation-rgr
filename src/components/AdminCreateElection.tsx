@@ -8,9 +8,9 @@ function AdminCreateElection() {
   const [dateValue, setDateValue] = useState({
     startDate: null,
     endDate: null,
-  })
-  const [chooseLocalityValue, setChooseLocalityValue] = useState("")
-  const [voteRetractionValue, setVoteRetractionValue] = useState("");
+  });
+  const [chooseLocalityValue, setChooseLocalityValue] = useState("");
+  const [voteRetractionValue, setVoteRetractionValue] = useState(false);
   const [createElection, setCreateElection] = useState({
     name: "",
     description: "",
@@ -27,22 +27,27 @@ function AdminCreateElection() {
 
   const CreateElectionButton = () => {
     axiosInstance
-      .post("/", {
+      .post("/election", {
         name: createElection.name,
         description: createElection.description,
-        available_votes: createElection.available_votes,
-        choose_locality: chooseLocalityValue,
-        vote_retraction: voteRetractionValue,
-        state: createElection.name,
-        district: createElection.district,
-        city: createElection.city,
-        voting_address: createElection.voting_address,
-        minimum_age: 0,
-        maximum_age: 0,
-        start_date: dateValue.startDate,
-        end_date: dateValue.endDate,
-        candidates_name: createElection.candidates_name,
-        candidates_description: createElection.candidates_description,
+        availableVotes: createElection.available_votes,
+        localityType: chooseLocalityValue,
+        localityAddress: {
+          homeAddress: createElection.voting_address,
+          city: createElection.city,
+          district: createElection.district,
+          state: createElection.state,
+          postalCode: null,
+        },
+        hasRetract: voteRetractionValue,
+        minAge: createElection.minimum_age,
+        maxAge: createElection.maximum_age,
+        startDate: dateValue.startDate,
+        endDate: dateValue.endDate,
+        candidateList: {
+          name: createElection.candidates_name,
+          description: createElection.candidates_description
+        },
       })
       .then(function (response) {
         console.log("created new election", response);
@@ -51,7 +56,7 @@ function AdminCreateElection() {
         console.log(error);
       });
   };
-
+  
   function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     setCreateElection({
@@ -111,25 +116,14 @@ function AdminCreateElection() {
                 <div className="flex justify-around flex-col">
                   <div className="flex w-full">
                     <button
-                      className="px-4 py-1 my-2 text-sx text-[#fffff] font-semibold rounded-full border border-purple-200 hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setChooseLocalityValue("district");
-                      }}
-                    >
-                      District
-                    </button>
-                    <button
                       className="px-4 py-1 my-2 mx-2 text-sx text-[#fffff] font-semibold rounded-full border border-purple-200 hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
                       onClick={(e) => {
                         e.preventDefault();
-                        setChooseLocalityValue("city");
+                        setChooseLocalityValue("national");
                       }}
                     >
-                      City
+                      National
                     </button>
-                  </div>
-                  <div className="flex justify-around">
                     <button
                       className="px-4 py-1 my-2 text-sx text-[#fffff] font-semibold rounded-full border border-purple-200 hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
                       onClick={(e) => {
@@ -139,14 +133,25 @@ function AdminCreateElection() {
                     >
                       State
                     </button>
+                  </div>
+                  <div className="flex justify-around">
                     <button
                       className="px-4 py-1 my-2 mx-2 text-sx text-[#fffff] font-semibold rounded-full border border-purple-200 hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
                       onClick={(e) => {
                         e.preventDefault();
-                        setChooseLocalityValue("national");
+                        setChooseLocalityValue("city");
                       }}
                     >
-                      National
+                      City
+                    </button>
+                    <button
+                      className="px-4 py-1 my-2 text-sx text-[#fffff] font-semibold rounded-full border border-purple-200 hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setChooseLocalityValue("district");
+                      }}
+                    >
+                      District
                     </button>
                   </div>
                 </div>
@@ -158,7 +163,7 @@ function AdminCreateElection() {
                     className="px-4 py-1 my-2 mx-2 text-sx text-[#fffff] font-semibold rounded-full border border-purple-200 hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
                     onClick={(e) => {
                       e.preventDefault();
-                      setVoteRetractionValue("enable");
+                      setVoteRetractionValue(true);
                     }}
                   >
                     Enable
@@ -167,53 +172,74 @@ function AdminCreateElection() {
                     className="px-4 py-1 my-2 mx-2 text-sx text-[#fffff] font-semibold rounded-full border border-purple-200 hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
                     onClick={(e) => {
                       e.preventDefault();
-                      setVoteRetractionValue("disable");
+                      setVoteRetractionValue(false);
                     }}
                   >
                     Disable
                   </button>
                 </div>
               </label>
-              <label className="flex flex-col mt-2">
-                State:
-                <input
-                  name="state"
-                  onChange={handleInputChange}
-                  value={createElection.state}
-                  type="text"
-                  className="w-64 my-0.5 bg-[#fffff] rounded-lg px-2 border border-slate-950 hover:border-purple-800"
-                />
-              </label>
-              <label className="flex flex-col mt-2">
-                District:
-                <input
-                  name="district"
-                  onChange={handleInputChange}
-                  value={createElection.district}
-                  type="text"
-                  className="w-64 my-0.5 bg-[#fffff] rounded-lg px-2 border border-slate-950 hover:border-purple-800"
-                />
-              </label>
-              <label className="flex flex-col mt-2">
-                City:
-                <input
-                  name="city"
-                  onChange={handleInputChange}
-                  value={createElection.city}
-                  type="text"
-                  className="w-64 my-0.5 bg-[#fffff] rounded-lg px-2 border border-slate-950 hover:border-purple-800"
-                />
-              </label>
-              <label className="flex flex-col mt-2">
-                Voting address:
-                <input
-                  name="voting_address"
-                  onChange={handleInputChange}
-                  value={createElection.voting_address}
-                  type="text"
-                  className="w-64 my-0.5 bg-[#fffff] rounded-lg px-2 border border-slate-950 hover:border-purple-800"
-                />
-              </label>
+              {chooseLocalityValue !== "national" ? (
+                <div>
+                  {chooseLocalityValue === "state" ||
+                  chooseLocalityValue === "city" ||
+                  chooseLocalityValue === "district" ? (
+                    <div>
+                      <div>
+                        <label className="flex flex-col mt-2">
+                          State:
+                          <input
+                            name="state"
+                            onChange={handleInputChange}
+                            value={createElection.state}
+                            type="text"
+                            className="w-64 my-0.5 bg-[#fffff] rounded-lg px-2 border border-slate-950 hover:border-purple-800"
+                          />
+                        </label>
+                      </div>
+                      {chooseLocalityValue === "city" ||
+                      chooseLocalityValue === "district" ? (
+                        <div>
+                          <label className="flex flex-col mt-2">
+                            City:
+                            <input
+                              name="city"
+                              onChange={handleInputChange}
+                              value={createElection.city}
+                              type="text"
+                              className="w-64 my-0.5 bg-[#fffff] rounded-lg px-2 border border-slate-950 hover:border-purple-800"
+                            />
+                          </label>
+                        </div>
+                      ) : null}
+                      {chooseLocalityValue === "district" ? (
+                        <div>
+                          <label className="flex flex-col mt-2">
+                            District:
+                            <input
+                              name="district"
+                              onChange={handleInputChange}
+                              value={createElection.district}
+                              type="text"
+                              className="w-64 my-0.5 bg-[#fffff] rounded-lg px-2 border border-slate-950 hover:border-purple-800"
+                            />
+                          </label>
+                          <label className="flex flex-col mt-2">
+                            Voting address:
+                            <input
+                              name="voting_address"
+                              onChange={handleInputChange}
+                              value={createElection.voting_address}
+                              type="text"
+                              className="w-64 my-0.5 bg-[#fffff] rounded-lg px-2 border border-slate-950 hover:border-purple-800"
+                            />
+                          </label>
+                        </div>
+                      ) : null}
+                    </div>
+                  ) : null}
+                </div>
+              ) : null}
               <label className="flex flex-col mt-2">
                 Minimum age:
                 <input
