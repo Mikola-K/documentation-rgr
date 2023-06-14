@@ -7,7 +7,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AdminCreateElection from "./components/AdminCreateElection";
 import AdminEditElection from "./components/AdminEditElection";
 import AdminEditElectionByIdWrapper from "./components/AdminEditElectionById";
-
+import Login from "./components/Login";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
@@ -20,6 +20,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           path="/admin/edit/:id"
           element={<AdminEditElectionByIdWrapper />}
         />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
