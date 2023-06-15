@@ -1,22 +1,26 @@
 import axios from "axios";
 import store from "../store/store";
 
+const { accessToken } = store.getState();
 const axiosInstance = axios.create({
   baseURL: "http://localhost:8081",
+  headers: {
+    Authorization: accessToken,
+  },
 });
 
-axiosInstance.interceptors.request.use(
-  (config) => {
-    const { accessToken } = store.getState(); 
-    if (accessToken) {
-      config.headers.Authorization = `Bearer ${accessToken}`;
-    }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
+// axiosInstance.interceptors.request.use(
+//   (config) => {
+//     const { accessToken } = store.getState(); 
+//     if (accessToken) {
+//       config.headers.Authorization = `Bearer ${accessToken}`;
+//     }
+//     return config;
+//   },
+//   (error) => {
+//     return Promise.reject(error);
+//   }
+// );
 
 export default axiosInstance;
 

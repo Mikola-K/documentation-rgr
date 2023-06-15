@@ -13,6 +13,7 @@ import Login from "./components/Login";
 import FirstPage from './components/FirstPage'
 import Register from './components/Register'
 import UserMainPage from "./components/UserMainPage";
+import UserElectionByIdWrapper from "./components/UserElectionById";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
@@ -30,6 +31,10 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<FirstPage />} />
           <Route path="/user" element={<UserMainPage />} />
+          <Route
+            path="/user/election/:id"
+            element={<UserElectionByIdWrapper />}
+          />
         </Routes>
       </BrowserRouter>
     </Provider>

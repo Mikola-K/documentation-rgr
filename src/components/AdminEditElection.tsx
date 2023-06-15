@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Navbar from "./Navbar";
 import IElection from "../interfaces/electionDto";
-import axiosInstance from "../api/axiosInstance";
 
-function AdminEditElection() {
+interface Props {
+  id: string;
+}
+function AdminEditElection(props: Props) {
   const [electionList, setElectionList] = useState<IElection>();
 
   // useEffect(() => {
@@ -13,16 +15,14 @@ function AdminEditElection() {
   //     console.log(response.data, "list of election");
   //   });
   // });
-  const deleteElection = (id: number) => {
-    axiosInstance
-      .delete(`/election/${id}`)
-      .then(function (response) {
-        console.log("deleted election by id", response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
+
+  //  useEffect(() => {
+  //   axiosInstance.get<IElection>(`/election/editable`).then((response) => {
+  //     setElectionList(response.data);
+  //     console.log(response.data, "list of election");
+  //   });
+  //   });
+
   return (
     <div className="">
       <Navbar indentity_code={31231} persone={"admin"} />
@@ -77,4 +77,15 @@ function AdminEditElection() {
   );
 }
 
-export default AdminEditElection;
+function AdminEditElectionWrapper() {
+  const { id } = useParams<{
+    id?: string;
+  }>();
+  if (!id) {
+    return <div>Invalid Id</div>;
+  }
+  return <AdminEditElection id={id} />;
+}
+
+export default AdminEditElectionWrapper;
+

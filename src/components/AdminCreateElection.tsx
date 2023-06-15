@@ -25,6 +25,8 @@ function AdminCreateElection() {
     maximum_age: 0,
     candidates_name: "",
     candidates_description: "",
+    candidates_name_two: "",
+    candidates_description_two: ''
   });
   const { accessToken } = store.getState();
 
@@ -55,6 +57,10 @@ function AdminCreateElection() {
               {
                 name: createElection.candidates_name,
                 description: createElection.candidates_description,
+              },
+              {
+                name: createElection.candidates_name_two,
+                description: createElection.candidates_description_two,
               },
             ],
           },
@@ -305,6 +311,26 @@ function AdminCreateElection() {
                   name="candidates_description"
                   onChange={handleInputChange}
                   value={createElection.candidates_description}
+                  type="text"
+                  className="w-64 my-0.5 bg-[#fffff] rounded-lg px-2 border border-slate-950 hover:border-purple-800"
+                />
+              </label>
+              <label className="flex flex-col mt-2">
+                Candidates name two:
+                <input
+                  name="candidates_name_two"
+                  onChange={handleInputChange}
+                  value={createElection.candidates_name_two}
+                  type="text"
+                  className="w-64 my-0.5 bg-[#fffff] rounded-lg px-2 border border-slate-950 hover:border-purple-800"
+                />
+              </label>
+              <label className="flex flex-col mt-2">
+                Candidates description two:
+                <input
+                  name="candidates_description_two"
+                  onChange={handleInputChange}
+                  value={createElection.candidates_description_two}
                   type="text"
                   className="w-64 my-0.5 bg-[#fffff] rounded-lg px-2 border border-slate-950 hover:border-purple-800"
                 />
