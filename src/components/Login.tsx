@@ -44,6 +44,12 @@ function Login() {
                                     className="w-64 my-0.5 bg-[#fffff] rounded-lg px-2 border border-slate-950 hover:border-purple-800"
                                 />
                             </label>
+                            <button
+                                /*onClick={CreateLoginButton}*/
+                                className=" px-4 py-1 mt-4 my-2 mx-2 text-sx text-center  bg-black text-white font-semibold rounded-full border border-red-600 hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+                            >
+                                Login
+                            </button>
                         </div>
                     </form>
                 </div>

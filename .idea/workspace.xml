@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="efb67ac5-15c3-4a06-9697-222cdd54b247" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Login.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/FirstPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Register.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/UserMainPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/-" beforeDir="false" afterPath="$PROJECT_DIR$/-" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
@@ -18,6 +21,7 @@
       <change beforePath="$PROJECT_DIR$/src/api/axiosInstance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/axiosInstance.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/AdminCreateElection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdminCreateElection.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/AdminEditElection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdminEditElection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Login.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
@@ -79,7 +83,7 @@
       <workItem from="1686604726478" duration="1275000" />
       <workItem from="1686654181098" duration="107000" />
       <workItem from="1686659520744" duration="159000" />
-      <workItem from="1686759697856" duration="7259000" />
+      <workItem from="1686759697856" duration="12625000" />
     </task>
     <servers />
   </component>
