@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import Datepicker from "react-tailwindcss-datepicker";
 import axiosInstance from "../api/axiosInstance";
+import axios from "axios";
+import store from "../store/store";
 
 function AdminCreateElection() {
   const [dateValue, setDateValue] = useState({
@@ -24,37 +26,50 @@ function AdminCreateElection() {
     candidates_name: "",
     candidates_description: "",
   });
+  const { accessToken } = store.getState();
 
   const CreateElectionButton = () => {
-    axiosInstance
-      .post("/election", {
-        name: createElection.name,
-        description: createElection.description,
-        availableVotes: createElection.available_votes,
-        localityType: chooseLocalityValue,
-        localityAddress: {
-          homeAddress: createElection.voting_address,
-          city: createElection.city,
-          district: createElection.district,
-          state: createElection.state,
-          postalCode: null,
-        },
-        hasRetract: voteRetractionValue,
-        minAge: createElection.minimum_age,
-        maxAge: createElection.maximum_age,
-        startDate: dateValue.startDate,
-        endDate: dateValue.endDate,
-        candidateList: {
-          name: createElection.candidates_name,
-          description: createElection.candidates_description
-        },
-      })
-      .then(function (response) {
-        console.log("created new election", response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    //axiosInstance
+      axios
+        .post(
+          "http://localhost:8081/election",
+          {
+            name: createElection.name,
+            description: createElection.description,
+            availableVotes: createElection.available_votes,
+            localityType: chooseLocalityValue,
+            localityAddress: {
+              homeAddress: createElection.voting_address,
+              city: createElection.city,
+              district: createElection.district,
+              state: createElection.state,
+              postalCode: null,
+            },
+            hasRetract: voteRetractionValue,
+            minAge: createElection.minimum_age,
+            maxAge: createElection.maximum_age,
+            startDate: dateValue.startDate,
+            endDate: dateValue.endDate,
+            candidateList: {
+              name: createElection.candidates_name,
+              description: createElection.candidates_description,
+            },
+          },
+          {
+            headers: {
+              Authorization: accessToken,
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Methods":
+                "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+            },
+          }
+        )
+        .then(function (response) {
+          console.log("created new election", response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
   };
   
   function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
@@ -292,7 +307,10 @@ function AdminCreateElection() {
                 />
               </label>
               <button
-                onClick={CreateElectionButton}
+                onClick={(e) => {
+                  e.preventDefault();
+                  CreateElectionButton();
+                }}
                 className=" px-4 py-1 mt-4 my-2 mx-2 text-sx text-center  bg-black text-white font-semibold rounded-full border border-red-600 hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
               >
                 Confirm

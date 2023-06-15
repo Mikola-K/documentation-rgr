@@ -7,12 +7,12 @@ import axiosInstance from "../api/axiosInstance";
 function AdminEditElection() {
   const [electionList, setElectionList] = useState<IElection>();
 
-  useEffect(() => {
-    axiosInstance.get<IElection>(`/election/editable`).then((response) => {
-      setElectionList(response.data);
-      console.log(response.data, "list of election");
-    });
-  });
+  // useEffect(() => {
+  //   axiosInstance.get<IElection>(`/election/editable`).then((response) => {
+  //     setElectionList(response.data);
+  //     console.log(response.data, "list of election");
+  //   });
+  // });
   const deleteElection = (id: number) => {
     axiosInstance
       .delete(`/election/${id}`)
