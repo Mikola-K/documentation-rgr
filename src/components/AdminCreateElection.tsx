@@ -11,7 +11,7 @@ function AdminCreateElection() {
     startDate: null,
     endDate: null,
   });
-  const [chooseLocalityValue, setChooseLocalityValue] = useState("");
+  const [chooseLocalityValue, setChooseLocalityValue] = useState(0);
   const [voteRetractionValue, setVoteRetractionValue] = useState(false);
   const [createElection, setCreateElection] = useState({
     name: "",
@@ -35,6 +35,7 @@ function AdminCreateElection() {
           "http://localhost:8081/election",
           {
             name: createElection.name,
+            adminId: 7,
             description: createElection.description,
             availableVotes: createElection.available_votes,
             localityType: chooseLocalityValue,
@@ -50,10 +51,12 @@ function AdminCreateElection() {
             maxAge: createElection.maximum_age,
             startDate: dateValue.startDate,
             endDate: dateValue.endDate,
-            candidateList: {
-              name: createElection.candidates_name,
-              description: createElection.candidates_description,
-            },
+            candidateList: [
+              {
+                name: createElection.candidates_name,
+                description: createElection.candidates_description,
+              },
+            ],
           },
           {
             headers: {
@@ -134,7 +137,7 @@ function AdminCreateElection() {
                       className="px-4 py-1 my-2 mx-2 text-sx text-[#fffff] font-semibold rounded-full border border-purple-200 hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
                       onClick={(e) => {
                         e.preventDefault();
-                        setChooseLocalityValue("national");
+                        setChooseLocalityValue(3);
                       }}
                     >
                       National
@@ -143,7 +146,7 @@ function AdminCreateElection() {
                       className="px-4 py-1 my-2 text-sx text-[#fffff] font-semibold rounded-full border border-purple-200 hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
                       onClick={(e) => {
                         e.preventDefault();
-                        setChooseLocalityValue("state");
+                        setChooseLocalityValue(2);
                       }}
                     >
                       State
@@ -154,7 +157,7 @@ function AdminCreateElection() {
                       className="px-4 py-1 my-2 mx-2 text-sx text-[#fffff] font-semibold rounded-full border border-purple-200 hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
                       onClick={(e) => {
                         e.preventDefault();
-                        setChooseLocalityValue("city");
+                        setChooseLocalityValue(1);
                       }}
                     >
                       City
@@ -163,7 +166,7 @@ function AdminCreateElection() {
                       className="px-4 py-1 my-2 text-sx text-[#fffff] font-semibold rounded-full border border-purple-200 hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
                       onClick={(e) => {
                         e.preventDefault();
-                        setChooseLocalityValue("district");
+                        setChooseLocalityValue(0);
                       }}
                     >
                       District
@@ -194,11 +197,11 @@ function AdminCreateElection() {
                   </button>
                 </div>
               </label>
-              {chooseLocalityValue !== "national" ? (
+              {chooseLocalityValue !== 3 ? (
                 <div>
-                  {chooseLocalityValue === "state" ||
-                  chooseLocalityValue === "city" ||
-                  chooseLocalityValue === "district" ? (
+                  {chooseLocalityValue === 2 ||
+                  chooseLocalityValue === 1 ||
+                  chooseLocalityValue === 0 ? (
                     <div>
                       <div>
                         <label className="flex flex-col mt-2">
@@ -212,8 +215,8 @@ function AdminCreateElection() {
                           />
                         </label>
                       </div>
-                      {chooseLocalityValue === "city" ||
-                      chooseLocalityValue === "district" ? (
+                      {chooseLocalityValue === 1 ||
+                      chooseLocalityValue === 0 ? (
                         <div>
                           <label className="flex flex-col mt-2">
                             City:
@@ -227,7 +230,7 @@ function AdminCreateElection() {
                           </label>
                         </div>
                       ) : null}
-                      {chooseLocalityValue === "district" ? (
+                      {chooseLocalityValue === 0 ? (
                         <div>
                           <label className="flex flex-col mt-2">
                             District:
