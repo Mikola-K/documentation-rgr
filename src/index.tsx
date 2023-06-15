@@ -8,6 +8,8 @@ import AdminCreateElection from "./components/AdminCreateElection";
 import AdminEditElection from "./components/AdminEditElection";
 import AdminEditElectionByIdWrapper from "./components/AdminEditElectionById";
 import Login from "./components/Login";
+import FirstPage from './components/FirstPage'
+import Register from './components/Register'
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
@@ -21,6 +23,8 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           element={<AdminEditElectionByIdWrapper />}
         />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/" element={<FirstPage />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
