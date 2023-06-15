@@ -1,8 +1,11 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import axiosInstance from "../api/axiosInstance";
+import { useDispatch } from "react-redux";
+import { setAccessToken } from "../store/store";
 
 function Login() {
+  const dispatch = useDispatch();
   const [createLogin, setCreateLogin] = useState({
     identityCode: "",
     password: "",
@@ -23,6 +26,7 @@ function Login() {
         password: createLogin.password,
       })
       .then(function (response) {
+        dispatch(setAccessToken(response));
         console.log("signin", response);
       })
       .catch(function (error) {
@@ -71,4 +75,5 @@ function Login() {
     </div>
   );
 }
+
 export default Login;
