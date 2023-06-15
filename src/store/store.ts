@@ -3,6 +3,8 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   accessToken: null,
+  isAdmin: false,
+  idPerson: 0
 };
 
 const authSlice = createSlice({
@@ -12,10 +14,18 @@ const authSlice = createSlice({
     setAccessToken: (state, action) => {
       state.accessToken = action.payload;
     },
+    setIsAdmin: (state, action) => {
+      state.isAdmin = action.payload;
+    },
+    setIdPerson: (state, action) => {
+      state.idPerson = action.payload;
+    },
   },
 });
 
 export const { setAccessToken } = authSlice.actions;
+export const { setIsAdmin } = authSlice.actions;
+export const { setIdPerson } = authSlice.actions;
 
 const store = configureStore({
   reducer: authSlice.reducer,

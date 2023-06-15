@@ -10,7 +10,9 @@ interface Props {
 }
 function UserElectionById(props: Props) {
   const [electionListById, setElectionListById] = useState<IElection>();
-  const { accessToken } = store.getState();
+    const { accessToken } = store.getState();
+    
+  const { isAdmin } = store.getState();
 
     useEffect(() => {
       axios
@@ -32,7 +34,11 @@ function UserElectionById(props: Props) {
         <div>
           <div className="flex items-center justify-center">
             <button className="px-4 py-1 my-2 mx-2 text-sx bg-black text-white border-red-600 font-semibold rounded-full border hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">
-              <Link to={`/user`}>Go Back</Link>
+              {isAdmin === true ? (
+                <Link to={`/admin/main`}>Go Back</Link>
+              ) : (
+                <Link to={`/user`}>Go Back</Link>
+              )}
             </button>
           </div>
           <div className="flex flex-row p-2 mx-2 justify-center">

@@ -1,8 +1,7 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import Navbar from "./Navbar";
-import axiosInstance from "../api/axiosInstance";
 import { useDispatch } from "react-redux";
-import { setAccessToken } from "../store/store";
+import { setAccessToken, setIdPerson, setIsAdmin } from "../store/store";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -31,6 +30,8 @@ function Login() {
       })
       .then(function (response) {
         console.log("signin", response);
+        dispatch(setIsAdmin(response.data.isAdmin))
+        dispatch(setIdPerson(response.data.id));
         if (dispatch(setAccessToken(response.data.jwt))) {
           if (response.data.isAdmin === true) {
             navigate("/admin/main");
@@ -43,10 +44,6 @@ function Login() {
         console.log(error);
       });
   };
-  //   const { accessToken } = store.getState();
-  // const test = () => {
-  //   console.log(accessToken, "accessToken");
-  // };
 
   return (
     <div className="">
@@ -55,15 +52,6 @@ function Login() {
         <button className="px-4 py-1 my-2 mx-2 text-sx bg-black text-white border-red-600 font-semibold rounded-full border   hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">
           <Link to={`/`}>Go back</Link>
         </button>
-        {/* <button
-          className="px-4 py-1 my-2 mx-2 text-sx text-[#fffff] font-semibold rounded-full border border-purple-200 hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
-          onClick={(e) => {
-            e.preventDefault();
-            test();
-          }}
-        >
-          Test
-        </button> */}
         <div className="flex items-center flex-col">
           <h1 className="py-2">Login</h1>
           <form>

@@ -2,11 +2,12 @@ import { ChangeEvent, useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import Datepicker from "react-tailwindcss-datepicker";
-import axiosInstance from "../api/axiosInstance";
 import axios from "axios";
 import store from "../store/store";
 
 function AdminCreateElection() {
+  const { accessToken } = store.getState();
+  const { idPerson } = store.getState();
   const [dateValue, setDateValue] = useState({
     startDate: null,
     endDate: null,
@@ -28,16 +29,14 @@ function AdminCreateElection() {
     candidates_name_two: "",
     candidates_description_two: ''
   });
-  const { accessToken } = store.getState();
-
+  
   const CreateElectionButton = () => {
-    //axiosInstance
       axios
         .post(
           "http://localhost:8081/election",
           {
             name: createElection.name,
-            adminId: 7,
+            adminId: idPerson,
             description: createElection.description,
             availableVotes: createElection.available_votes,
             localityType: chooseLocalityValue,
