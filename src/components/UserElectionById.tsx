@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import Navbar from "./Navbar";
 import IElection from "../interfaces/electionDto";
 import store from "../store/store";
@@ -9,24 +9,81 @@ interface Props {
   id: string;
 }
 function UserElectionById(props: Props) {
-  const [electionListById, setElectionListById] = useState<IElection>();
-    const { accessToken } = store.getState();
+    const [electionListById, setElectionListById] = useState<IElection>();
+    const [votesNumberValue, setVotesNumberValue] = useState<number[]>([]);
+  const { accessToken } = store.getState();
+    const { isAdmin } = store.getState();
+    const { idPerson } = store.getState();
     
-  const { isAdmin } = store.getState();
 
-    useEffect(() => {
-      axios
-        .get<IElection>(`http://localhost:8081/election/${props.id}`, {
-          headers: {
-            Authorization: accessToken,
-          },
-        })
-        .then((response) => {
+      const [inputValues, setInputValues] = useState<string[]>([]);
+
+    //   function handleInputChange(index: number, value: string): void {
+    //     const updatedValues = [...inputValues];
+    //     updatedValues[index] = value;
+    //     setInputValues(updatedValues);
+    //   }
+
+    //   function addInput(): void {
+    //     setInputValues((prevValues) => [...prevValues, ""]);
+    // }
+
+
+
+  useEffect(() => {
+    axios
+      .get<IElection>(`http://localhost:8081/election/${props.id}`, {
+        headers: {
+          Authorization: accessToken,
+        },
+      })
+      .then((response) => {
           setElectionListById(response.data);
-          console.log(response.data, "Election by id");
-        });
-    }, [props.id, accessToken]);
+        console.log(response.data, "Election by id");
+      });
+  }, [props.id, accessToken]);
 
+    
+    // function handleInputChange(e: ChangeEvent<HTMLInputElement>): void {
+    //       const votesNumberValues = Number(e.target.value.trim());
+    //     setVotesNumberValue((prevArray) => [...prevArray, votesNumberValues]);
+    //     console.log(votesNumberValue);
+    //  }
+
+    // const temp = () => {
+    //     return electionListById?.candidateList.map
+    // }
+    
+
+//   const voteButton = () => {
+//     axios
+//       .post(
+//         "http://localhost:8081/vote",
+//         {
+//           electionId: electionListById?.id,
+//           userId: idPerson,
+//           votingMap: {
+            
+//           },
+//         },
+//         {
+//           headers: {
+//             Authorization: accessToken,
+//           },
+//         }
+//       )
+//       .then(function (response) {
+//         console.log("created new election", response);
+//       })
+//       .catch(function (error) {
+//         console.log(error);
+//       });
+//     //   for (int i = 0; i<=candidateList.length; i++) {
+//     // votingMap.put(candidateList[i].Id, voteNumberValue[i].voteNumber);
+// }
+//   };
+// electionListById?.candidateList[0].id : electionListById?.voteCount,
+//             electionListById?.candidateList[1].id : electionListById?.voteCount,
   return (
     <div className="">
       <Navbar indentity_code={31231} persone={"user"} />
@@ -134,9 +191,30 @@ function UserElectionById(props: Props) {
                     </label>
                   </div>
                 )}
+                {/* <label className="flex flex-col mt-2">
+                  Number 1:
+                  <input
+                    name="candidates_name"
+                    onChange={handleInputChange}
+                    value={inputValue}
+                    type="number"
+                    className="w-64 my-0.5 bg-[#fffff] rounded-lg px-2 border border-slate-950 hover:border-purple-800"
+                  />
+                </label>
+                <label className="flex flex-col mt-2">
+                  Number 2
+                  <input
+                    name="candidates_name"
+                    onChange={handleInputChange}
+                    value={inputValue}
+                    type="number"
+                    className="w-64 my-0.5 bg-[#fffff] rounded-lg px-2 border border-slate-950 hover:border-purple-800"
+                  />
+                </label> */}
                 <button
                   onClick={(e) => {
                     e.preventDefault();
+                    // voteButton();
                   }}
                   className=" px-4 py-1 mt-4 my-2 mx-2 text-sx text-center  bg-black text-white font-semibold rounded-full border border-red-600 hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
                 >

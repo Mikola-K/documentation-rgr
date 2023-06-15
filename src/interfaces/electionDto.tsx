@@ -6,6 +6,12 @@ interface IAddressDto {
   state: string;
   postalCode: string;
 }
+
+interface ICandidateList {
+  description: string,
+  id: number,
+  name: string
+}
 interface IElection {
   id: number;
   name: string;
@@ -19,6 +25,7 @@ interface IElection {
   maxAge: number;
   startDate: Date;
   endDate: Date;
+  candidateList?: ICandidateList;
 }
 
 export default IElection
