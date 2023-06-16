@@ -11,7 +11,7 @@ function AdminMainPage() {
   const { idPerson } = store.getState();
   useEffect(() => {
     axios
-      .get<IElection[]>(`http://localhost:8081/election`, {
+      .get<IElection[]>(`http://localhost:8082/election`, {
         headers: {
           Authorization: accessToken,
         },

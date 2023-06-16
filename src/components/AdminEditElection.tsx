@@ -2,38 +2,39 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Navbar from "./Navbar";
 import IElection from "../interfaces/electionDto";
+import axios from "axios";
 import store from "../store/store";
 
-interface Props {
-  id: string;
-}
-function AdminEditElection(props: Props) {
-  const [electionList, setElectionList] = useState<IElection>();
+function AdminEditElection() {
+  const [electionList, setElectionList] = useState<IElection[]>([]);
+  const { accessToken } = store.getState();
   const { idPerson } = store.getState();
-  // useEffect(() => {
-  //   axiosInstance.get<IElection>(`/election/editable`).then((response) => {
-  //     setElectionList(response.data);
-  //     console.log(response.data, "list of election");
-  //   });
-  // });
 
-  //  useEffect(() => {
-  //   axiosInstance.get<IElection>(`/election/editable`).then((response) => {
-  //     setElectionList(response.data);
-  //     console.log(response.data, "list of election");
-  //   });
-  //   });
+  useEffect(() => {
+    axios
+      .get<IElection[]>(`http://localhost:8082/election/editable`, {
+        headers: {
+          Authorization: accessToken,
+        },
+      })
+      .then((response) => {
+        setElectionList(response.data);
+        console.log(response.data, "Election List");
+      });
+  }, [accessToken]);
 
   return (
     <div className="">
       <Navbar indentity_code={idPerson} persone={"admin"} />
-      <div className="bg-[#F7F7F7]">
-        <div>
-          <h1>List of Election that you can change!</h1>
-          <h1>Election One</h1>
-          <h1>Election Two</h1>
-          {electionList?.name}
-          {/* {electionList.length > 0
+      <div className="h-screen bg-[#F7F7F7]">
+        <button className="px-4 py-1 my-2 mx-2 text-sx bg-black text-white border-red-600 font-semibold rounded-full border hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">
+          <Link to={`/admin/main`}>Go Back</Link>
+        </button>
+        <h1 className="flex justify-center">
+          List of Election that you can change!
+        </h1>
+        <div className="flex flex-row p-2 mx-2 justify-center">
+          {electionList.length > 0
             ? electionList.map((election: IElection, index: number) => (
                 <div
                   key={election.id + "-" + index}
@@ -53,40 +54,23 @@ function AdminEditElection(props: Props) {
                   </div>
                   <div className="flex justify-center mt-2">
                     <div>
-                      <button className="px-4 py-1 mt-4 my-2 mx-2 text-sx text-center  bg-black text-white font-semibold rounded-full border border-red-600 hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">
-                        <Link to={`/admin/edit/${election.id}`}>Edit</Link>
-                      </button>
                       <button
-                        onClick={() => {
-                          deleteElection(election.id);
+                        onClick={(e) => {
+                          e.preventDefault();
                         }}
                         className="px-4 py-1 mt-4 my-2 mx-2 text-sx text-center  bg-black text-white font-semibold rounded-full border border-red-600 hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
                       >
-                        Delete
+                        <Link to={`/admin/edit/${election.id}`}>Detail</Link>
                       </button>
                     </div>
                   </div>
                 </div>
               ))
-            : "Loading"} */}
+            : "Loading"}
         </div>
-        <button className="px-4 py-1 my-2 mx-2 text-sx bg-black text-white border-red-600 font-semibold rounded-full border hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">
-          <Link to={`/admin/main`}>Go Back</Link>
-        </button>
       </div>
     </div>
   );
 }
 
-function AdminEditElectionWrapper() {
-  const { id } = useParams<{
-    id?: string;
-  }>();
-  if (!id) {
-    return <div>Invalid Id</div>;
-  }
-  return <AdminEditElection id={id} />;
-}
-
-export default AdminEditElectionWrapper;
-
+export default AdminEditElection;

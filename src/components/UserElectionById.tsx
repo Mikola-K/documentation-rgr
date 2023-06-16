@@ -32,7 +32,7 @@ function UserElectionById(props: Props) {
 
   useEffect(() => {
     axios
-      .get<IElection>(`http://localhost:8081/election/${props.id}`, {
+      .get<IElection>(`http://localhost:8082/election/${props.id}`, {
         headers: {
           Authorization: accessToken,
         },
@@ -58,7 +58,7 @@ function UserElectionById(props: Props) {
 //   const voteButton = () => {
 //     axios
 //       .post(
-//         "http://localhost:8081/vote",
+//         "http://localhost:8082/vote",
 //         {
 //           electionId: electionListById?.id,
 //           userId: idPerson,

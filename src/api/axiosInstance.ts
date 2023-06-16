@@ -3,7 +3,7 @@ import store from "../store/store";
 
 const { accessToken } = store.getState();
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:8081",
+  baseURL: "http://localhost:8082",
   headers: {
     Authorization: accessToken,
   },

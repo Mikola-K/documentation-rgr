@@ -33,7 +33,7 @@ function AdminCreateElection() {
   const CreateElectionButton = () => {
       axios
         .post(
-          "http://localhost:8081/election",
+          "http://localhost:8082/election",
           {
             name: createElection.name,
             adminId: idPerson,
