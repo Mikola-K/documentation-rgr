@@ -1,11 +1,12 @@
 import { ChangeEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import Datepicker from "react-tailwindcss-datepicker";
 import axios from "axios";
 import store from "../store/store";
 
 function AdminCreateElection() {
+  const navigate = useNavigate();
   const { accessToken } = store.getState();
   const { idPerson } = store.getState();
   const [dateValue, setDateValue] = useState({
@@ -74,6 +75,7 @@ function AdminCreateElection() {
         )
         .then(function (response) {
           console.log("created new election", response);
+          navigate("/admin/main");
         })
         .catch(function (error) {
           console.log(error);

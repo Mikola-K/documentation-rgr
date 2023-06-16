@@ -21,12 +21,7 @@ function AdminMainPage() {
         console.log(response.data, "Election List");
       });
   }, [accessToken]);
-
-   
-  const { isAdmin } = store.getState();
-  const test = () => {
-    console.log(isAdmin, "accessToken");
-  };
+ 
   return (
     <div className="">
       <Navbar indentity_code={idPerson} persone={"admin"} />
@@ -41,15 +36,6 @@ function AdminMainPage() {
             </button>
             <button className="px-4 py-1 my-2 mx-2 text-sx bg-black text-white border-red-600 font-semibold rounded-full border  hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">
               Closed
-            </button>
-            <button
-              className="px-4 py-1 my-2 mx-2 text-sx text-[#fffff] font-semibold rounded-full border border-purple-200 hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
-              onClick={(e) => {
-                e.preventDefault();
-                test();
-              }}
-            >
-              Test
             </button>
           </div>
           <div className="flex flex-row p-2 mx-2 justify-evenly">
