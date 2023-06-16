@@ -218,6 +218,9 @@ function Register() {
               >
                 Register
               </button>
+              <button className="px-4 py-1 my-2 mx-2 text-sx bg-black text-white border-red-600 font-semibold rounded-full border   hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">
+                <Link to={`/login`}>Go to Login</Link>
+              </button>
             </div>
           </form>
         </div>

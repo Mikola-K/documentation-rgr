@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="efb67ac5-15c3-4a06-9697-222cdd54b247" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/FirstPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Register.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/UserMainPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/-" beforeDir="false" afterPath="$PROJECT_DIR$/-" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -21,13 +18,21 @@
       <change beforePath="$PROJECT_DIR$/src/api/axiosInstance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/axiosInstance.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/AdminCreateElection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdminCreateElection.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/AdminEditElection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdminEditElection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AdminEditElectionById.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdminEditElectionById.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FirstPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FirstPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Login.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Register.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Register.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UserElectionById.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserElectionById.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UserMainPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserMainPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/items/2650149 1.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/items/2650149 1.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/electionDto.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/electionDto.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/react-app-env.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/react-app-env.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/reportWebVitals.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/reportWebVitals.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/setupTests.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/setupTests.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/store.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
@@ -50,11 +55,15 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2R7cn6QNgxO2RpGUwAk7r8pi2D4" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -83,7 +92,7 @@
       <workItem from="1686604726478" duration="1275000" />
       <workItem from="1686654181098" duration="107000" />
       <workItem from="1686659520744" duration="159000" />
-      <workItem from="1686759697856" duration="12625000" />
+      <workItem from="1686759697856" duration="21848000" />
     </task>
     <servers />
   </component>
@@ -100,5 +109,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>
