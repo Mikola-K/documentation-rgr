@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 function UserMainPage() {
   const [electionList, setElectionList] = useState<IElection[]>([]);
   const { accessToken } = store.getState();
+    const { idPerson } = store.getState();
+    const { isAdmin } = store.getState();
 
  useEffect(() => {
    axios
@@ -25,7 +27,7 @@ function UserMainPage() {
 
   return (
     <div className="">
-      <Navbar indentity_code={31231} persone={"user"} />
+      <Navbar indentity_code={idPerson} persone={isAdmin ? "admin" : "user" } />
       <div className=" h-screen bg-[#F7F7F7] p-4 m-2">
         <div>
           <div className="flex items-center justify-center">

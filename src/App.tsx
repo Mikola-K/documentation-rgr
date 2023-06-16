@@ -8,7 +8,7 @@ import store from "./store/store";
 function AdminMainPage() {
   const [electionList, setElectionList] = useState<IElection[]>([]);
   const { accessToken } = store.getState();
-
+  const { idPerson } = store.getState();
   useEffect(() => {
     axios
       .get<IElection[]>(`http://localhost:8081/election`, {
@@ -29,7 +29,7 @@ function AdminMainPage() {
   };
   return (
     <div className="">
-      <Navbar indentity_code={31231} persone={"admin"} />
+      <Navbar indentity_code={idPerson} persone={"admin"} />
       <div className="flex justify-evenly h-screen bg-[#F7F7F7] p-4 m-2">
         <div className="">
           <div className="flex justify-center items-center">

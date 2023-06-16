@@ -93,7 +93,7 @@ function AdminCreateElection() {
 
   return (
     <div className="">
-      <Navbar indentity_code={31231} persone={"admin"} />
+      <Navbar indentity_code={idPerson} persone={"admin"} />
       <div className=" h-full bg-[#F7F7F7]">
         <div>
           <button className="px-4 py-1 my-2 mx-2 text-sx bg-black text-white border-red-600 font-semibold rounded-full border   hover:text-[#27272a] hover:bg-[#cbd5e1] hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">

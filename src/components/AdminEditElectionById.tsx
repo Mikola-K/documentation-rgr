@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import IElection from "../interfaces/electionDto";
 import axiosInstance from "../api/axiosInstance";
 import { useParams } from "react-router-dom";
+import store from "../store/store";
 
 interface Props {
   id: string;
@@ -11,7 +12,7 @@ interface Props {
 
 function AdminEditElectionById(props: Props) {
   const [electionListById, setElectionListById] = useState<IElection>();
-
+  const { idPerson } = store.getState();
   useEffect(() => {
     axiosInstance.get<IElection>(`/election/${props.id}`).then((response) => {
       setElectionListById(response.data);
@@ -21,7 +22,7 @@ function AdminEditElectionById(props: Props) {
 
   return (
     <div className="">
-      <Navbar indentity_code={31231} persone={"admin"} />
+      <Navbar indentity_code={idPerson} persone={"admin"} />
       <div className="bg-[#F7F7F7]">
         <div>
           <h1>List of Election that you can change!</h1>

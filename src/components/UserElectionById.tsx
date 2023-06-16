@@ -86,7 +86,7 @@ function UserElectionById(props: Props) {
 //             electionListById?.candidateList[1].id : electionListById?.voteCount,
   return (
     <div className="">
-      <Navbar indentity_code={31231} persone={"user"} />
+      <Navbar indentity_code={idPerson} persone={isAdmin ? "admin" : "user" } />
       <div className=" h-screen bg-[#F7F7F7] p-4 m-2">
         <div>
           <div className="flex items-center justify-center">
